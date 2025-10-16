@@ -1,6 +1,6 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://prakhargurunani.com'
 languageCode = 'en-us'
-title = 'Shibui (渋い)'
+title = 'Prakhar Gurunani'
 theme = "shibui"
 themesDir = "../.."
 enableGitInfo = true
@@ -30,13 +30,10 @@ email = "kiennt2609@gmail.com"
 
 [menu]
   [[menu.main]]
-    name = "Posts"
-    url = "/posts/"
+    name = "Blog"
+    url = "/blog/"
     weight = 1
-  [[menu.main]]
-    name = "About"
-    url = "/about/"
-    weight = 2
+
 
 [build]
   writeStats = true

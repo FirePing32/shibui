@@ -65,7 +65,7 @@ jobs:
         run: git config core.quotepath false
 
       - name: Build with Hugo
-        working-directory: exampleSite
+        working-directory: portfolio
         run: |
           hugo \
             --themesDir=../.. \
@@ -83,7 +83,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./exampleSite/public
+          path: ./portfolio/public
 
   # Deployment job
   deploy:
