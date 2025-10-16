@@ -1,5 +1,5 @@
 <div align="center">
- <img src="./static/favicon_io/apple-icon-180x180.png">
+ <!-- <img src="./static/favicon_io/apple-icon-180x180.png"> -->
  <h1>Shibui (渋い)</h1>
  <p>A minimalist Hugo theme emphasizing simplicity and refinement</p>
  <p>
