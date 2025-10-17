@@ -47,3 +47,7 @@ email = "kiennt2609@gmail.com"
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
+
+[services]
+  [services.googleAnalytics]
+    id = 'G-9SVFFP0NZ3'
