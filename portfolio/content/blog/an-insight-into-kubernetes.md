@@ -1,11 +1,11 @@
 ---
 title: "An Insight Into Kubernetes"
-date: 2023-11-11T17:12:11+07:00
+date: 2024-11-11T17:12:11+05:30
 comment: false
 tags: ["kubernetes"]
 ---
 
-## Introduction
+# Introduction
 
 Welcome to the exciting world of Kubernetes – a powerful orchestration platform that simplifies the deployment, scaling, and management of containerized applications. If you're new to Cloud Native and wondering what Kubernetes is all about, this blog post is your comprehensive guide to understanding the basics of Kubernetes, its key concepts, and the architecture that makes it tick.
 
