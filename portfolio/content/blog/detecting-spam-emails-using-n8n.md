@@ -1,11 +1,12 @@
 ---
 title: "Automated Email Spam Detection Using N8N"
-date: 2025-10-18T17:12:11+05:30
+date: 2025-10-18T00:12:11+05:30
 comment: false
 tags: ["n8n", "automation", "agents"]
 ---
 
 # How I Built an AI-Powered Spam Filter That Actually Works
+![alt text](./../assets/n8n-workflow.png)
 
 I was drowning in spam emails. Every morning, I'd wake up to dozens of "You've won a prize!" messages, sketchy invoices, and promotional garbage that somehow slipped past Gmail's filters. I spent way too much time manually cleaning my inbox, and I knew there had to be a better way.
 
@@ -36,7 +37,6 @@ My workflow is pretty straightforward:
 
 ```
 Gmail Trigger → AI Agent Analysis → Decision Node → Delete Email + Slack Notification
-                                                   → Do Nothing
 ```
 
 Simple, but effective. Let me walk you through each part.
@@ -71,6 +71,7 @@ First, I needed to create OAuth credentials in Google Cloud Console. Here's what
    - This scope is crucial - it lets the workflow both read and delete emails
 
 4. **Generated OAuth 2.0 Credentials**
+  ![credentials](./../assets/n8n-oauth-credentials.png)
    - Navigated to "APIs & Services" > "Credentials"
    - Clicked "Create Credentials" > "OAuth 2.0 Client ID"
    - Selected "Web application"
@@ -335,9 +336,7 @@ Now I only act on high-confidence decisions:
 
 I've been running this for a few months now and 70% seems to be the sweet spot. I haven't had a false positive yet.
 
-### What Happens on Each Path
-
-#### True Path: Delete and Notify
+### Delete and Notify
 
 When an email is confirmed spam, I do two things:
 
@@ -372,6 +371,8 @@ Right after the delete, I added a Slack node:
 ```
 
 This gives me full visibility into what's being deleted. I check this channel once a day to make sure nothing important got caught.
+
+![slack](./../assets/n8n-response.png)
 
 I actually went back later and made it fancier using Slack's Block Kit format. It looks way more professional:
 
