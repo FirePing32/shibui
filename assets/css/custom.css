@@ -12,4 +12,5 @@ pre, code {
   white-space: pre-wrap !important;        /* wrap text like normal, preserve line breaks */
   word-wrap: break-word !important;        /* legacy, break long words if needed */
   overflow-wrap: break-word !important;    /* modern alternative */
+  margin: 0 auto;
 }
