@@ -1,1 +1,15 @@
 /* You can add custom style here */
+:root {
+    --container-width: 90vw !important;
+}
+body {
+    width: 90vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+pre, code {
+  white-space: pre-wrap !important;        /* wrap text like normal, preserve line breaks */
+  word-wrap: break-word !important;        /* legacy, break long words if needed */
+  overflow-wrap: break-word !important;    /* modern alternative */
+}
