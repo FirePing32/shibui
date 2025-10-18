@@ -47,7 +47,7 @@
   --gap-small: 0.5em;
 
   /* Breakpoints */
-  --breakpoint-mobile: 500px;
+  --breakpoint-mobile: 600px;
 }
 
 /* Common component styles */
@@ -473,7 +473,7 @@ blockquote > :last-child {
   list-style-type: disc !important;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .path-nav li {
     max-width: 100px; /* More aggressive truncation on mobile */
   }
@@ -487,7 +487,7 @@ blockquote > :last-child {
   }
 }
 
-@media (max-device-width: 500px) {
+@media (max-device-width: 600px) {
   body {
     padding-top: 2em;
   }
