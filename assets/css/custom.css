@@ -1,11 +1,18 @@
 /* You can add custom style here */
-:root {
-    --container-width: 90vw !important;
+@media (max-width: 600px) {
+  :root {
+      --container-width: 90vw !important;
+  }
+  body {
+      width: 90vw;
+      margin-left: 5vw;
+      margin-right: 5vw;
+  }
 }
-body {
-    width: 90vw;
-    margin-left: 5vw;
-    margin-right: 5vw;
+:root {
+  --bg-h: 30 !important;
+  --bg-s: 5% !important;
+  --bg-l: 99% !important;
 }
 
 pre, code {
