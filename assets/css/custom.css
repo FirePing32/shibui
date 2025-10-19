@@ -1,12 +1,13 @@
 /* You can add custom style here */
 @media (max-width: 600px) {
   :root {
-      --container-width: 90vw !important;
+      --container-width: 85vw !important;
   }
   body {
-      width: 90vw;
-      margin-left: 5vw;
-      margin-right: 5vw;
+      width: 85vw;
+      margin-left: 7.5vw;
+      margin-right: 7.5vw;
+      padding: 0;
   }
 }
 :root {
