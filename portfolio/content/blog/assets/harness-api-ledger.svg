@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" width="880" height="400" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <rect width="880" height="400" rx="10" fill="#f7f8fa"/>
+
+  <text x="28" y="38" font-size="17" font-weight="600" fill="#1f2933">Read-before-edit: a flag vs a version check</text>
+  <text x="28" y="60" font-size="13" fill="#6b7280">Same four steps. The difference is what happens at step 4.</text>
+
+  <!-- left: boolean -->
+  <rect x="28" y="84" width="396" height="258" rx="9" fill="#ffffff" stroke="#e0b3b3" stroke-width="1.6"/>
+  <text x="48" y="110" font-size="13.5" font-weight="600" fill="#8c3b3b">A boolean "has it been read?"</text>
+
+  <text x="48" y="142" font-size="12" fill="#3e4c59">1. model reads config.go</text>
+  <text x="290" y="142" font-size="11" fill="#8b93a1">seen = true</text>
+
+  <text x="48" y="172" font-size="12" fill="#3e4c59">2. model runs a build script</text>
+
+  <text x="48" y="202" font-size="12" fill="#3e4c59">3. the script rewrites config.go</text>
+  <text x="290" y="202" font-size="11" fill="#8b93a1">seen = true</text>
+
+  <text x="48" y="232" font-size="12" fill="#3e4c59">4. model edits from memory</text>
+  <rect x="284" y="218" width="120" height="22" rx="4" fill="#fbeaea"/>
+  <text x="344" y="234" font-size="11" font-weight="600" fill="#8c3b3b" text-anchor="middle">allowed</text>
+
+  <line x1="48" y1="256" x2="404" y2="256" stroke="#eceff3"/>
+  <text x="48" y="282" font-size="12" font-weight="600" fill="#8c3b3b">The script's work is silently gone.</text>
+  <text x="48" y="304" font-size="11.5" fill="#6b7280">Nothing throws. The edit succeeds. Nobody</text>
+  <text x="48" y="322" font-size="11.5" fill="#6b7280">finds out until something else breaks.</text>
+
+  <!-- right: hash -->
+  <rect x="456" y="84" width="396" height="258" rx="9" fill="#ffffff" stroke="#a6c8a6" stroke-width="1.6"/>
+  <text x="476" y="110" font-size="13.5" font-weight="600" fill="#2f6b3f">A content hash</text>
+
+  <text x="476" y="142" font-size="12" fill="#3e4c59">1. model reads config.go</text>
+  <text x="718" y="142" font-size="11" fill="#8b93a1" font-family="ui-monospace, monospace">hash = a1b2…</text>
+
+  <text x="476" y="172" font-size="12" fill="#3e4c59">2. model runs a build script</text>
+
+  <text x="476" y="202" font-size="12" fill="#3e4c59">3. the script rewrites config.go</text>
+  <text x="718" y="202" font-size="11" fill="#8b93a1" font-family="ui-monospace, monospace">now c9d4…</text>
+
+  <text x="476" y="232" font-size="12" fill="#3e4c59">4. model edits from memory</text>
+  <rect x="712" y="218" width="120" height="22" rx="4" fill="#e8f3e8"/>
+  <text x="772" y="234" font-size="11" font-weight="600" fill="#2f6b3f" text-anchor="middle">refused</text>
+
+  <line x1="476" y1="256" x2="832" y2="256" stroke="#eceff3"/>
+  <text x="476" y="282" font-size="12" font-weight="600" fill="#2f6b3f">"It changed since you read it. Read again."</text>
+  <text x="476" y="304" font-size="11.5" fill="#6b7280">The model re-reads and edits the real file.</text>
+  <text x="476" y="322" font-size="11.5" fill="#6b7280">One wasted call instead of a lost change.</text>
+
+  <text x="28" y="372" font-size="11.5" fill="#6b7280">Same idea applies after context compaction: if the summariser drops the turn holding those bytes, the</text>
+  <text x="28" y="390" font-size="11.5" fill="#6b7280">observation is marked stale — otherwise the check keeps passing for contents the model no longer has.</text>
+</svg>

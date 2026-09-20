@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 470" width="880" height="470" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <rect width="880" height="470" rx="10" fill="#f7f8fa"/>
+
+  <text x="28" y="38" font-size="17" font-weight="600" fill="#1f2933">Where the agent loop lives</text>
+  <text x="28" y="60" font-size="13" fill="#6b7280">The API is stateless request/response. Everything between the two is one HTTP call.</text>
+
+  <!-- client -->
+  <rect x="28" y="92" width="150" height="78" rx="8" fill="#ffffff" stroke="#cbd2d9" stroke-width="1.5"/>
+  <text x="103" y="124" font-size="13.5" font-weight="600" fill="#1f2933" text-anchor="middle">Any OpenAI</text>
+  <text x="103" y="142" font-size="13.5" font-weight="600" fill="#1f2933" text-anchor="middle">client</text>
+  <text x="103" y="160" font-size="11" fill="#8b93a1" text-anchor="middle">python · node · curl</text>
+
+  <path d="M178 131 L228 131" stroke="#9aa5b1" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text x="203" y="123" font-size="10.5" fill="#6b7280" text-anchor="middle">POST</text>
+
+  <!-- server box -->
+  <rect x="228" y="80" width="624" height="330" rx="10" fill="#ffffff" stroke="#b8c1cc" stroke-width="1.8"/>
+  <text x="248" y="104" font-size="13" font-weight="600" fill="#3e4c59">harness-api</text>
+  <text x="852" y="104" font-size="11" fill="#9aa5b1" text-anchor="end">one process, Go</text>
+
+  <!-- front door -->
+  <rect x="248" y="118" width="128" height="60" rx="7" fill="#eef2f6" stroke="#cbd2d9"/>
+  <text x="312" y="142" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">front door</text>
+  <text x="312" y="160" font-size="10.5" fill="#6b7280" text-anchor="middle">auth · limits · binding</text>
+
+  <path d="M376 148 L412 148" stroke="#9aa5b1" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- the loop -->
+  <rect x="412" y="112" width="418" height="182" rx="8" fill="#f0f4f8" stroke="#9fb3c8" stroke-width="1.6"/>
+  <text x="432" y="134" font-size="12.5" font-weight="600" fill="#334e68">agent loop — repeats until the model stops asking for tools</text>
+
+  <rect x="432" y="148" width="122" height="54" rx="6" fill="#ffffff" stroke="#bcccdc"/>
+  <text x="493" y="170" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">call model</text>
+  <text x="493" y="187" font-size="10.5" fill="#6b7280" text-anchor="middle">+ tool schemas</text>
+
+  <path d="M554 175 L590 175" stroke="#9aa5b1" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="590" y="148" width="108" height="54" rx="6" fill="#ffffff" stroke="#bcccdc"/>
+  <text x="644" y="170" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">guards</text>
+  <text x="644" y="187" font-size="10.5" fill="#6b7280" text-anchor="middle">deny only</text>
+
+  <path d="M698 175 L734 175" stroke="#9aa5b1" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="734" y="148" width="80" height="54" rx="6" fill="#ffffff" stroke="#bcccdc"/>
+  <text x="774" y="170" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">tools</text>
+  <text x="774" y="187" font-size="10.5" fill="#6b7280" text-anchor="middle">6 of them</text>
+
+  <!-- loop-back arrow -->
+  <path d="M774 202 L774 232 L493 232 L493 204" fill="none" stroke="#829ab1" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#ar2)"/>
+  <text x="634" y="248" font-size="11" fill="#627d98" text-anchor="middle">results appended to history, model called again</text>
+
+  <text x="432" y="276" font-size="11" fill="#627d98">bounded by: turns · wall clock · upstream tokens — none raisable by the caller</text>
+
+  <!-- workspace -->
+  <rect x="248" y="200" width="128" height="94" rx="7" fill="#eef2f6" stroke="#cbd2d9"/>
+  <text x="312" y="224" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">session</text>
+  <text x="312" y="244" font-size="10.5" fill="#6b7280" text-anchor="middle">workspace dir</text>
+  <text x="312" y="261" font-size="10.5" fill="#6b7280" text-anchor="middle">path jail</text>
+  <text x="312" y="278" font-size="10.5" fill="#6b7280" text-anchor="middle">what was read</text>
+
+  <path d="M376 247 L412 247 L412 220" fill="none" stroke="#9aa5b1" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- upstream -->
+  <rect x="432" y="316" width="398" height="72" rx="7" fill="#eef2f6" stroke="#cbd2d9"/>
+  <text x="452" y="340" font-size="12" font-weight="600" fill="#1f2933">quirks layer</text>
+  <text x="452" y="358" font-size="10.5" fill="#6b7280">max_tokens vs max_completion_tokens · system vs developer role</text>
+  <text x="452" y="375" font-size="10.5" fill="#6b7280">schema dialect · think-tag stripping · SSE vs NDJSON framing</text>
+
+  <path d="M493 204 L493 316" stroke="#9aa5b1" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- provider -->
+  <path d="M830 352 L866 352" stroke="#9aa5b1" stroke-width="1.5"/>
+  <text x="852" y="344" font-size="10.5" fill="#6b7280" text-anchor="end">→ provider</text>
+
+  <text x="28" y="436" font-size="11.5" fill="#6b7280">The caller sends one request and gets one answer. Inside, the model may be called fifteen times.</text>
+  <text x="28" y="454" font-size="11.5" fill="#6b7280">Usage reported back is the total across all of them, not just the last.</text>
+
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#9aa5b1"/>
+    </marker>
+    <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#829ab1"/>
+    </marker>
+  </defs>
+</svg>
