@@ -77,7 +77,7 @@ The constraints are what make it a project:
 
 ### What the answers look like
 
-![The overview page](./assets/claude-observability-overview.png)
+![The overview page](assets/claude-observability-overview.png)
 
 That's the overview for my account over the last 30 days. Each question above
 gets a tile:
@@ -102,7 +102,7 @@ usage limit in 2 blocks this week, vs 1 the week before*.
 
 ## The shape of the system
 
-![Architecture](./assets/claude-observability-architecture.svg)
+![Architecture](assets/claude-observability-architecture.svg)
 
 It's a **push** model. Each machine runs `claude-obs`, which reads the bytes
 Claude Code appended to its session files since the last run. It reduces them
@@ -113,7 +113,7 @@ A **workspace** is one Claude account. Machines enroll into a workspace, and
 everything shown is account-wide. There is deliberately no per-person view: the
 goal is the right totals for the account, not a leaderboard.
 
-![The machines page, with machine names anonymized](./assets/claude-observability-machines.png)
+![The machines page, with machine names anonymized](assets/claude-observability-machines.png)
 
 Machines are the one breakdown the dashboard does offer, because a silent or
 misconfigured collector is the most likely reason for wrong totals. For each
@@ -155,7 +155,7 @@ a number going up rather than as silently wrong totals.
 
 The first real surprise came from counting before writing any parser logic.
 
-![Collector pipeline](./assets/claude-observability-pipeline.svg)
+![Collector pipeline](assets/claude-observability-pipeline.svg)
 
 Claude Code writes **one line per content block** of a response, and repeats
 the response's `usage` object on each. A reply with a text block and a tool call
@@ -438,7 +438,7 @@ Single-run sessions matched to the cent. Resumed ones didn't, for good reasons. 
 the dashboard shows that figure as *Claude Code's own accounting (last run)*
 rather than as a pass/fail check.
 
-![A session's detail page](./assets/claude-observability-session.png)
+![A session's detail page](assets/claude-observability-session.png)
 
 The session above shows why. It ran for almost six days across several resumes:
 6,683 requests and $698 of tracked value. Claude Code's own record says $309,
