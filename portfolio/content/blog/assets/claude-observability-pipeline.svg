@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 456" width="880" height="456" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <rect width="880" height="456" rx="10" fill="#f7f8fa"/>
+
+  <text x="28" y="38" font-size="17" font-weight="600" fill="#1f2933">The collector writes to disk before it touches the network</text>
+  <text x="28" y="60" font-size="13" fill="#6b7280">Offsets move only after a batch is safely in the outbox. A crash means a re-send, never a loss.</text>
+
+  <!-- row 1 -->
+  <rect x="28" y="96" width="180" height="62" rx="7" fill="#ffffff" stroke="#cbd2d9" stroke-width="1.5"/>
+  <text x="118" y="120" font-size="13.5" font-weight="600" fill="#1f2933" text-anchor="middle">discover</text>
+  <text x="118" y="140" font-size="11" fill="#6b7280" text-anchor="middle">sessions + subagent files</text>
+  <path d="M208 127 L242 127" stroke="#9aa5b1" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="242" y="96" width="180" height="62" rx="7" fill="#ffffff" stroke="#cbd2d9" stroke-width="1.5"/>
+  <text x="332" y="120" font-size="13.5" font-weight="600" fill="#1f2933" text-anchor="middle">tail</text>
+  <text x="332" y="140" font-size="11" fill="#6b7280" text-anchor="middle">from saved byte offset</text>
+  <path d="M422 127 L456 127" stroke="#9aa5b1" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="456" y="96" width="180" height="62" rx="7" fill="#ffffff" stroke="#cbd2d9" stroke-width="1.5"/>
+  <text x="546" y="120" font-size="13.5" font-weight="600" fill="#1f2933" text-anchor="middle">parse</text>
+  <text x="546" y="140" font-size="11" fill="#6b7280" text-anchor="middle">allowlisted fields only</text>
+  <path d="M636 127 L670 127" stroke="#9aa5b1" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="670" y="96" width="180" height="62" rx="7" fill="#ffffff" stroke="#cbd2d9" stroke-width="1.5"/>
+  <text x="760" y="120" font-size="13.5" font-weight="600" fill="#1f2933" text-anchor="middle">reduce</text>
+  <text x="760" y="140" font-size="11" fill="#6b7280" text-anchor="middle">one row per request id</text>
+
+  <path d="M760 158 L760 186 L118 186 L118 214" stroke="#9aa5b1" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+
+  <!-- row 2 -->
+  <rect x="28" y="214" width="180" height="62" rx="8" fill="#f0f4f8" stroke="#9fb3c8" stroke-width="1.6"/>
+  <text x="118" y="238" font-size="13.5" font-weight="600" fill="#334e68" text-anchor="middle">outbox</text>
+  <text x="118" y="258" font-size="11" fill="#6b7280" text-anchor="middle">one atomic file per batch</text>
+  <path d="M208 245 L242 245" stroke="#9aa5b1" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="242" y="214" width="180" height="62" rx="7" fill="#ffffff" stroke="#cbd2d9" stroke-width="1.5"/>
+  <text x="332" y="238" font-size="13.5" font-weight="600" fill="#1f2933" text-anchor="middle">commit offsets</text>
+  <text x="332" y="258" font-size="11" fill="#6b7280" text-anchor="middle">temp file + rename</text>
+  <path d="M422 245 L456 245" stroke="#9aa5b1" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="456" y="214" width="180" height="62" rx="7" fill="#ffffff" stroke="#cbd2d9" stroke-width="1.5"/>
+  <text x="546" y="238" font-size="13.5" font-weight="600" fill="#1f2933" text-anchor="middle">upload</text>
+  <text x="546" y="258" font-size="11" fill="#6b7280" text-anchor="middle">in order · backoff · retry-after</text>
+  <path d="M636 245 L670 245" stroke="#9aa5b1" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="670" y="214" width="180" height="62" rx="7" fill="#ffffff" stroke="#829ab1" stroke-width="1.6"/>
+  <text x="760" y="238" font-size="13.5" font-weight="600" fill="#1f2933" text-anchor="middle">server upsert</text>
+  <text x="760" y="258" font-size="11" fill="#6b7280" text-anchor="middle">by request id, keep max output</text>
+
+  <path d="M28 288 L28 296 L636 296 L636 288" stroke="#9aa5b1" stroke-width="1.3" fill="none"/>
+  <text x="332" y="314" font-size="11.5" fill="#6b7280" text-anchor="middle">a crash anywhere in here re-reads and re-sends; the server stores each request once</text>
+
+  <!-- dedup -->
+  <line x1="28" y1="334" x2="852" y2="334" stroke="#e4e7eb" stroke-width="1"/>
+  <text x="28" y="358" font-size="13" font-weight="600" fill="#3e4c59">Why "reduce" exists: one response, several lines</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#334e68">
+    <text x="28" y="382">req_01H…</text><text x="110" y="382">text</text><text x="200" y="382">output_tokens: 12</text>
+    <text x="28" y="400">req_01H…</text><text x="110" y="400">tool_use</text><text x="200" y="400">output_tokens: 294</text>
+    <text x="28" y="418">req_01H…</text><text x="110" y="418">tool_use</text><text x="200" y="418">output_tokens: 294</text>
+  </g>
+  <path d="M380 400 L470 400" stroke="#9aa5b1" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="482" y="378" width="200" height="44" rx="7" fill="#f0f4f8" stroke="#9fb3c8" stroke-width="1.5"/>
+  <text x="582" y="397" font-size="12.5" font-weight="600" fill="#334e68" text-anchor="middle">one row, output 294</text>
+  <text x="582" y="413" font-size="10.5" fill="#6b7280" text-anchor="middle">keep the max, never sum</text>
+  <text x="700" y="397" font-size="10.5" fill="#6b7280">usage repeats per</text>
+  <text x="700" y="411" font-size="10.5" fill="#6b7280">block; output grows</text>
+  <text x="700" y="425" font-size="10.5" fill="#6b7280">while streaming</text>
+
+  <text x="28" y="446" font-size="11.5" fill="#6b7280">On real history, 3,301 assistant lines were 1,889 requests. Summing per line overcounts by about 75%.</text>
+
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#9aa5b1"/>
+    </marker>
+  </defs>
+</svg>
